@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <h1>House Price Prediction</h1>
+    <div class="container">
+        <form action="/predict" method="post">
+            <label for="location">Location:</label>
+            <select name="location" id="location">
+                {% for loc in locations %}
+                <option value="{{ loc }}">{{ loc }}</option>
+                {% endfor %}
+            </select>
+            <br><br>
+            <label for="total_sqft">Total Square Footage:</label>
+            <input type="text" name="total_sqft" id="total_sqft">
+            <br><br>
+            <label for="bath">Number of Bathrooms:</label>
+            <input type="text" name="bath" id="bath">
+            <br><br>
+            <label for="bhk">Number of BHK:</label>
+            <input type="text" name="bhk" id="bhk">
+            <br><br>
+            <input type="submit" value="Predict">
+        </form>
+        {% if prediction_text %}
+        <p>{{ prediction_text }}</p>
+        {% endif %}
+    </div>
+</body>
+
+</html>
